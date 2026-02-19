@@ -1,0 +1,5 @@
+##fileformat=VCFv4.2
+##source=PharmaGuard-Test
+##INFO=<ID=GENE,Number=1,Type=String,Description="Gene symbol">
+#CHROM POS ID REF ALT QUAL FILTER INFO FORMAT SAMPLE
+1 4000 rs3892097 C T . PASS GENE=CYP2D6 GT 1/1
