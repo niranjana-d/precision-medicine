@@ -1,0 +1,15 @@
+Gene: CYP2C9
+Drug: Warfarin
+Source: CPIC Guideline – CYP2C9 and Warfarin Therapy
+
+CYP2C9 encodes a cytochrome P450 enzyme that plays a major role in the metabolism of warfarin. Specifically, CYP2C9 is responsible for the clearance of the more pharmacologically active S-enantiomer of warfarin.
+
+Genetic variation in CYP2C9 affects enzyme activity. CYP2C9 alleles are categorized based on their functional impact, including normal function alleles and decreased function alleles. Decreased function alleles are associated with reduced metabolic capacity.
+
+Based on diplotype interpretation, individuals may be classified into CYP2C9 metabolizer phenotypes. CYP2C9 normal metabolizers have normal enzyme activity. CYP2C9 intermediate metabolizers have reduced enzyme activity due to the presence of one decreased function allele. CYP2C9 poor metabolizers have little to no enzyme activity due to the presence of two decreased function alleles.
+
+Reduced CYP2C9 activity results in slower metabolism of warfarin, leading to increased drug exposure. This increased exposure is associated with a higher risk of bleeding complications when warfarin is administered at standard doses.
+
+The CPIC guideline provides therapy recommendations for warfarin based on CYP2C9 metabolizer phenotype, indicating that patients with reduced CYP2C9 activity require lower warfarin doses and closer monitoring to reduce the risk of adverse bleeding events.
+
+These interpretations and recommendations are based on CPIC clinical guidelines and are intended to support clinical decision-making when CYP2C9 genotype information is available.

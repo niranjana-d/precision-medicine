@@ -1,0 +1,19 @@
+Gene: CYP2D6
+Drug: Codeine
+Source: CPIC Guideline – CYP2D6 and Codeine Therapy
+
+CYP2D6 encodes a cytochrome P450 enzyme that is involved in the metabolism of codeine. Codeine itself has limited analgesic activity and requires metabolic conversion to morphine to exert its therapeutic effect.
+
+The conversion of codeine to morphine is primarily mediated by CYP2D6. Genetic variation in CYP2D6 affects enzyme activity, resulting in differences in the rate and extent of morphine formation.
+
+CYP2D6 alleles are categorized based on their functional impact, including normal function alleles, decreased function alleles, and no-function alleles. These allele function categories influence overall CYP2D6 enzymatic activity.
+
+Based on diplotype interpretation, individuals may be assigned CYP2D6 metabolizer phenotypes. CYP2D6 normal metabolizers have normal enzyme activity. CYP2D6 intermediate metabolizers have reduced enzyme activity. CYP2D6 poor metabolizers have little to no functional enzyme activity. CYP2D6 ultrarapid metabolizers have increased enzyme activity due to the presence of multiple functional gene copies.
+
+Reduced CYP2D6 activity results in decreased conversion of codeine to morphine, leading to reduced analgesic effect. In contrast, increased CYP2D6 activity leads to enhanced conversion of codeine to morphine, resulting in higher morphine exposure.
+
+Altered morphine exposure due to CYP2D6 metabolizer status is associated with variability in therapeutic response and risk of adverse effects when codeine is administered.
+
+The CPIC guideline provides therapy recommendations for codeine based on CYP2D6 metabolizer phenotype, indicating that patients with altered CYP2D6 activity may experience reduced efficacy or increased risk of adverse effects when treated with codeine.
+
+These interpretations and recommendations are based on CPIC clinical guidelines and are intended to support clinical decision-making when CYP2D6 genotype information is available.

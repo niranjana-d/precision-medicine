@@ -1,0 +1,13 @@
+Source: CPIC Gene-Specific Information Tables (Diplotype–Phenotype and Allele Functionality Tables)
+
+Metabolizer phenotypes are used to describe predicted enzyme or transporter activity based on an individual’s genotype.
+
+Normal metabolizers are predicted to have normal functional activity of the relevant enzyme or transporter based on the presence of normal function alleles.
+
+Intermediate metabolizers are predicted to have reduced functional activity compared to normal metabolizers. This reduced activity is associated with the presence of one decreased-function or no-function allele in the diplotype.
+
+Poor metabolizers are predicted to have little to no functional enzyme activity. This phenotype is associated with diplotypes containing two no-function alleles.
+
+Ultrarapid metabolizers are predicted to have increased functional activity. This phenotype is associated with the presence of duplicated or multiple functional gene copies.
+
+These phenotype definitions are used by CPIC guidelines to support interpretation of genotype results and to inform therapy recommendations.

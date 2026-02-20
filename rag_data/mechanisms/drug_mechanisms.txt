@@ -1,0 +1,13 @@
+Source: CPIC Clinical Pharmacogenetics Implementation Consortium Guidelines
+
+Codeine is a prodrug that requires metabolic conversion to morphine to exert its analgesic effect. This conversion is mediated by cytochrome P450 enzymes.
+
+Clopidogrel is a prodrug that requires metabolic activation to produce its active antiplatelet metabolite.
+
+Warfarin is administered as a racemic mixture, and the S-enantiomer is more pharmacologically active and cleared primarily through enzymatic metabolism.
+
+Simvastatin requires hepatic uptake for its therapeutic effect, and transporter activity influences systemic exposure to the drug.
+
+Thiopurines such as azathioprine are metabolized through enzymatic pathways that influence drug exposure and toxicity.
+
+Fluoropyrimidines such as 5-fluorouracil are primarily catabolized by dihydropyrimidine dehydrogenase, and reduced enzyme activity leads to increased drug exposure.

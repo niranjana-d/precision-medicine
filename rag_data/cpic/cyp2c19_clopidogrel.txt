@@ -1,0 +1,15 @@
+Gene: CYP2C19
+Drug: Clopidogrel
+Source: CPIC Guideline – CYP2C19 and Clopidogrel Therapy
+
+CYP2C19 encodes a cytochrome P450 enzyme that is involved in the metabolic activation of clopidogrel. Clopidogrel is a prodrug and requires biotransformation by CYP2C19 to form its active metabolite.
+
+Genetic variation in CYP2C19 affects enzyme function. Alleles with normal function result in normal enzymatic activity, while no-function alleles result in reduced or absent CYP2C19 activity.
+
+Based on diplotype interpretation, individuals may be assigned CYP2C19 metabolizer phenotypes. CYP2C19 normal metabolizers have normal enzyme activity. CYP2C19 intermediate metabolizers have reduced enzyme activity. CYP2C19 poor metabolizers have little to no functional enzyme activity.
+
+Reduced CYP2C19 activity leads to decreased formation of the active clopidogrel metabolite. This results in reduced antiplatelet effect and a higher risk of adverse cardiovascular outcomes when clopidogrel is administered.
+
+The CPIC guideline provides therapy recommendations for clopidogrel based on CYP2C19 metabolizer phenotype, indicating that individuals with reduced or absent CYP2C19 function have diminished response to clopidogrel and may require alternative antiplatelet therapy.
+
+These interpretations and recommendations are based on CPIC clinical guidelines and are intended to support clinical decision-making when CYP2C19 genotype information is available.

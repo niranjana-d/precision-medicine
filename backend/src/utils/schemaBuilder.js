@@ -13,7 +13,8 @@ function buildResponse(patientId, drug, riskData, detectedVariants, explanation,
         },
         pharmacogenomics_profile: {
             primary_gene: riskData.pharmacogenomics_profile.primary_gene,
-            phenotype: riskData.pharmacogenomics_profile.phenotype
+            phenotype: riskData.pharmacogenomics_profile.phenotype,
+            diplotype: riskData.pharmacogenomics_profile.diplotype || "Unknown"
         },
         detected_variants: detectedVariants, // [{ rsid, gene, genotype }]
         clinical_recommendation: {

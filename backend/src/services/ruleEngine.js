@@ -1,10 +1,13 @@
 const CPIC_RULES = require('../constants/cpicRules');
+const { getPhenotype } = require('../constants/diplotypeLookup');
 
 /**
- * analyzes the risk for a specific drug based on parsed genes.
+ * Analyzes the pharmacogenomic risk for a specific drug based on parsed VCF data.
+ * Uses real genotype data to determine diplotype and phenotype.
+ *
  * @param {string} drugName - The name of the drug to analyze.
- * @param {Array<string>} parsedGenes - List of genes found in the VCF info tags.
- * @param {Array<Object>} detectedVariants - List of variant objects found.
+ * @param {Array<string>} parsedGenes - List of genes found in the VCF.
+ * @param {Array<Object>} detectedVariants - Variant objects: { rsid, gene, genotype }
  * @returns {Object} - Risk assessment object.
  */
 function analyzeRisk(drugName, parsedGenes, detectedVariants) {
@@ -19,38 +22,48 @@ function analyzeRisk(drugName, parsedGenes, detectedVariants) {
             recommendation: "No CPIC guidelines found for this drug.",
             pharmacogenomics_profile: {
                 primary_gene: "Unknown",
-                phenotype: "Unknown"
+                phenotype: "Unknown",
+                diplotype: "Unknown"
             }
         };
     }
 
-    // Logic: Check if the required gene is present in the parsed genes list.
-    // If present, we assume a variant exists that triggers the rule.
-    const isGeneVariantPresent = parsedGenes.includes(rule.gene);
+    const targetGene = rule.gene;
 
-    if (isGeneVariantPresent) {
+    // Use diplotype lookup to determine real phenotype from genotype data
+    const { diplotype, phenotype } = getPhenotype(targetGene, detectedVariants);
+
+    // Look up phenotype-specific risk rule
+    const phenotypeRule = rule.phenotypeRules[phenotype];
+
+    if (phenotypeRule) {
         return {
-            risk_label: rule.risk,
-            severity: rule.severity,
-            confidence_score: 0.9, // High confidence as we found the gene variant
-            recommendation: rule.recommendation,
+            risk_label: phenotypeRule.risk,
+            severity: phenotypeRule.severity,
+            confidence_score: phenotypeRule.confidence,
+            recommendation: phenotypeRule.recommendation,
             pharmacogenomics_profile: {
-                primary_gene: rule.gene,
-                phenotype: rule.phenotype
-            }
-        };
-    } else {
-        return {
-            risk_label: "Safe",
-            severity: "None",
-            confidence_score: 0.95, // High confidence that it is safe (no variant found)
-            recommendation: "Standard dosing guidelines apply.",
-            pharmacogenomics_profile: {
-                primary_gene: rule.gene,
-                phenotype: "Normal Metabolizer"
+                primary_gene: targetGene,
+                phenotype: phenotype,
+                diplotype: diplotype
             }
         };
     }
+
+    // Fallback: gene found but phenotype not in our rules
+    // Use the default phenotype mapping
+    const defaultRule = rule.phenotypeRules[rule.defaultPhenotype];
+    return {
+        risk_label: defaultRule ? defaultRule.risk : "Unknown",
+        severity: defaultRule ? defaultRule.severity : "None",
+        confidence_score: defaultRule ? defaultRule.confidence : 0.5,
+        recommendation: defaultRule ? defaultRule.recommendation : "Consult clinical guidelines.",
+        pharmacogenomics_profile: {
+            primary_gene: targetGene,
+            phenotype: phenotype || rule.defaultPhenotype,
+            diplotype: diplotype || "Unknown"
+        }
+    };
 }
 
 module.exports = { analyzeRisk };

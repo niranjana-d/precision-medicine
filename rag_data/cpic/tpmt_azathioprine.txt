@@ -1,0 +1,17 @@
+Gene: TPMT
+Drug: Azathioprine (thiopurines)
+Source: CPIC Guideline – Thiopurine Dosing Based on TPMT Genotype (2018 Update)
+
+TPMT (thiopurine S-methyltransferase) is an enzyme that catabolizes thiopurine drugs. TPMT activity exhibits a monogenic codominant inheritance pattern. TPMT variant alleles are associated with reduced enzyme activity and pronounced pharmacologic effects of thiopurines.
+
+Thiopurine drugs, including azathioprine, are metabolized through pathways in which TPMT plays a key role. Reduced TPMT activity leads to decreased inactivation of thiopurine metabolites and increased accumulation of active thiopurine nucleotide metabolites.
+
+Based on diplotype interpretation, individuals may be classified into TPMT metabolizer phenotypes. TPMT normal metabolizers have normal enzyme activity. TPMT intermediate metabolizers have reduced TPMT activity. TPMT poor metabolizers have little to no functional TPMT enzyme activity.
+
+TPMT variant alleles with no function are associated with low or absent enzyme activity. Diplotypes containing one nonfunctional allele are associated with intermediate metabolizer status, while diplotypes containing two nonfunctional alleles are associated with poor metabolizer status.
+
+Reduced or absent TPMT activity is associated with an increased risk of severe toxicity when thiopurines are administered at standard doses, due to accumulation of active thiopurine metabolites.
+
+The CPIC guideline provides therapy recommendations for thiopurine use based on TPMT metabolizer phenotype, indicating that patients with reduced or absent TPMT function require modified treatment strategies to reduce the risk of toxicity.
+
+These interpretations and recommendations are based on CPIC clinical guidelines and are intended to support clinical decision-making when TPMT genotype information is available.

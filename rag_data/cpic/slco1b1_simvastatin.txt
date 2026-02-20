@@ -1,0 +1,15 @@
+Gene: SLCO1B1
+Drug: Simvastatin
+Source: CPIC Guideline – SLCO1B1 and Simvastatin Therapy
+
+SLCO1B1 encodes the solute carrier organic anion transporter family member 1B1, which is involved in hepatic uptake of statin medications. This transporter plays an important role in the disposition of simvastatin.
+
+Genetic variation in SLCO1B1 affects transporter function. Some SLCO1B1 alleles are associated with normal transporter activity, while other alleles are associated with decreased transporter function.
+
+Based on diplotype interpretation, individuals may be classified into SLCO1B1 functional phenotypes. SLCO1B1 normal function phenotypes are associated with normal transporter activity. SLCO1B1 decreased function phenotypes are associated with reduced hepatic uptake of simvastatin.
+
+Reduced SLCO1B1 transporter function results in higher circulating concentrations of simvastatin due to decreased hepatic uptake. Increased systemic exposure to simvastatin is associated with a higher risk of adverse effects, including muscle-related toxicity.
+
+The CPIC guideline provides recommendations for simvastatin therapy based on SLCO1B1 functional phenotype, indicating that individuals with decreased SLCO1B1 function have an increased risk of simvastatin-associated adverse effects and may require alternative therapeutic strategies.
+
+These interpretations and recommendations are based on CPIC clinical guidelines and are intended to support clinical decision-making when SLCO1B1 genotype information is available.

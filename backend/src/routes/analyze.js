@@ -47,10 +47,12 @@ router.post('/analyze', upload.single('vcf_file'), async (req, res) => {
         fs.unlinkSync(vcfPath);
 
         const { genes, variants } = parsingResult;
+        console.log("Parsed VCF - Genes:", genes, "Variants:", JSON.stringify(variants));
 
         // 3. Rule Engine Execution
         const drugName = drugsInput;
         const riskData = analyzeRisk(drugName, genes, variants);
+        console.log("Risk Data:", JSON.stringify(riskData));
 
         // 4. Gemini Explanation
         // We only explain the primary gene involved in the risk

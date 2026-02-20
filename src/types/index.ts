@@ -8,6 +8,7 @@ export interface RiskAssessment {
 export interface PharmacogenomicsProfile {
     primary_gene: string;
     phenotype: string;
+    diplotype?: string;
 }
 
 export interface ClinicalRecommendation {

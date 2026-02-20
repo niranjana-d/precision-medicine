@@ -1,0 +1,15 @@
+Gene: DPYD
+Drug: Fluoropyrimidines (5-fluorouracil, capecitabine)
+Source: CPIC Guideline – DPYD and Fluoropyrimidine Dosing (2017 Update)
+
+DPYD encodes dihydropyrimidine dehydrogenase (DPD), which is the rate-limiting enzyme responsible for the catabolism of fluoropyrimidine drugs such as 5-fluorouracil and capecitabine. Reduced DPD activity leads to decreased breakdown of fluoropyrimidines and increased systemic exposure.
+
+Numerous genetic variants in DPYD have been identified. Some variants do not affect DPD activity in a clinically relevant manner, while others result in reduced or absent enzyme function. Variants with reduced function are associated with impaired fluoropyrimidine metabolism.
+
+Based on diplotype interpretation, patients may be classified into metabolizer phenotypes. DPYD normal metabolizers have normal DPD enzyme activity. DPYD intermediate metabolizers have reduced enzyme activity. DPYD poor metabolizers have little to no functional enzyme activity.
+
+Reduced DPYD activity leads to decreased catabolism of fluoropyrimidines, resulting in higher drug exposure and an increased risk of severe or life-threatening toxicity when treated with standard doses.
+
+The CPIC guideline provides recommendations for fluoropyrimidine therapy based on DPYD metabolizer phenotype, indicating that patients with reduced or absent DPYD function require modified treatment approaches to reduce toxicity risk.
+
+These interpretations and recommendations are based on CPIC clinical guidelines and are intended to support clinical decision-making when DPYD genotype information is available.

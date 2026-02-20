@@ -13,22 +13,26 @@ function App() {
   const [drug, setDrug] = useState<string>("WARFARIN");
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState<AnalysisResult | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       setFile(e.target.files[0]);
+      setError(null);
     }
   };
 
   const handleAnalyze = async () => {
     if (!file) return;
     setIsLoading(true);
+    setError(null);
+    setResult(null);
     try {
       const data = await analyzePatientData(file, drug);
       setResult(data);
-    } catch (error) {
-      console.error("Analysis failed:", error);
-      // Handle error state here if needed
+    } catch (err: any) {
+      console.error("Analysis failed:", err);
+      setError(err.message || "Analysis failed. Please check the backend server.");
     } finally {
       setIsLoading(false);
     }
@@ -59,6 +63,14 @@ function App() {
             />
           </div>
         </Card>
+
+        {/* Error Display */}
+        {error && (
+          <Card className="p-6 border-l-4 border-red-500 bg-red-50">
+            <p className="text-red-700 font-medium">⚠ Analysis Error</p>
+            <p className="text-red-600 text-sm mt-1">{error}</p>
+          </Card>
+        )}
 
         {/* Results Section */}
         {result && (
