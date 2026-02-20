@@ -1,0 +1,69 @@
+# =============================================================================
+# PharmaGuard — Python Dependencies (RAG Service)
+# =============================================================================
+# This file lists all Python dependencies required for the RAG (Retrieval-
+# Augmented Generation) microservice which provides CPIC guideline context
+# to the Gemini AI for generating clinical explanations.
+#
+# Install:  pip install -r requirements.txt
+# Run:      uvicorn rag_data.main:app --port 8000
+# =============================================================================
+
+# --- Core RAG Infrastructure ---
+
+# ChromaDB: Vector database for embedding storage and similarity search
+# Used to index CPIC pharmacogenomic guideline documents and retrieve
+# relevant context passages for drug-gene pair queries.
+chromadb==1.5.0
+
+# Sentence-Transformers: Transformer-based sentence embedding models
+# Converts CPIC guideline text into dense vector embeddings for
+# semantic search. Uses the all-MiniLM-L6-v2 model by default.
+sentence-transformers==5.2.3
+
+# --- Web Framework ---
+
+# FastAPI: Modern async web framework for the RAG retrieval API
+# Exposes POST /explain endpoint consumed by the Node.js backend
+# to fetch relevant guideline context before calling Gemini.
+fastapi==0.115.12
+
+# Uvicorn: ASGI server for running the FastAPI application
+# Provides high-performance async HTTP serving.
+uvicorn==0.34.1
+
+# --- Transitive Dependencies (pinned for reproducibility) ---
+# These are automatically installed by the above packages but
+# are pinned here to ensure consistent builds across environments.
+
+# PyTorch (required by sentence-transformers)
+# Note: Install separately if GPU support is needed:
+#   pip install torch --index-url https://download.pytorch.org/whl/cu121
+torch>=2.0.0
+
+# Hugging Face Transformers (required by sentence-transformers)
+transformers>=4.30.0
+
+# NumPy (required by chromadb and sentence-transformers)
+numpy>=1.24.0
+
+# Pydantic (required by FastAPI for request/response validation)
+pydantic>=2.0.0
+
+# Starlette (required by FastAPI, ASGI toolkit)
+starlette>=0.27.0
+
+# Requests (HTTP client, used by chromadb)
+requests>=2.31.0
+
+# Tokenizers (fast tokenization, required by transformers)
+tokenizers>=0.13.0
+
+# Tqdm (progress bars, used during model downloads)
+tqdm>=4.65.0
+
+# Pillow (image processing, transitive dependency)
+pillow>=9.5.0
+
+# Typing Extensions (required by pydantic and FastAPI)
+typing-extensions>=4.5.0

@@ -5,38 +5,52 @@ require('dotenv').config();
 // Access your API key as an environment variable
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
+// Model fallback chain — each has a separate daily free-tier quota
+const MODEL_CHAIN = [
+    "gemini-2.5-flash",
+    "gemini-2.0-flash",
+    "gemini-2.0-flash-lite",
+    "gemini-1.5-flash",
+    "gemini-1.5-pro",
+];
+
 /**
- * Retries an async function with exponential backoff.
+ * Tries calling Gemini with a chain of models.
+ * If one model is rate-limited (429), moves to the next.
  */
-async function withRetry(fn, maxRetries = 3, baseDelay = 2000) {
-    for (let attempt = 0; attempt <= maxRetries; attempt++) {
+async function callWithModelFallback(prompt) {
+    for (const modelName of MODEL_CHAIN) {
         try {
-            return await fn();
+            console.log(`Trying model: ${modelName}...`);
+            const model = genAI.getGenerativeModel({ model: modelName });
+            const result = await model.generateContent(prompt);
+            const response = await result.response;
+            const text = response.text();
+            console.log(`✓ Success with model: ${modelName}`);
+            return text;
         } catch (error) {
-            const isRateLimit = error.message && (error.message.includes('429') || error.message.includes('Too Many Requests'));
-            if (isRateLimit && attempt < maxRetries) {
-                const delay = baseDelay * Math.pow(2, attempt); // 2s, 4s, 8s
-                console.log(`Rate limited. Retrying in ${delay / 1000}s... (attempt ${attempt + 1}/${maxRetries})`);
-                await new Promise(resolve => setTimeout(resolve, delay));
-            } else {
-                throw error;
+            const isRateLimit = error.message && (
+                error.message.includes('429') ||
+                error.message.includes('Too Many Requests') ||
+                error.message.includes('quota')
+            );
+            const isNotFound = error.message && error.message.includes('404');
+
+            if (isRateLimit || isNotFound) {
+                console.warn(`✗ ${modelName} unavailable: ${isRateLimit ? 'Rate limited' : 'Not found'}. Trying next...`);
+                continue; // Try next model
             }
+            throw error; // Non-rate-limit error, re-throw
         }
     }
+    throw new Error("All Gemini models exhausted (rate limited).");
 }
 
 /**
  * Generates an explanation for the pharmacogenomic risk using Gemini.
- * @param {string} drug - Drug name
- * @param {string} gene - Gene name
- * @param {string} phenotype - Phenotype description
- * @param {string} riskLabel - Calculated risk label
- * @param {string} depth - "summary" or "expanded"
- * @returns {Promise<Object>} - Object with summary and expanded explanation
  */
 async function generateExplanation(drug, gene, phenotype, riskLabel, depth = "summary") {
     try {
-        // If no API key is set, return a fallback immediately to prevent crashing
         if (!process.env.GEMINI_API_KEY) {
             console.warn("GEMINI_API_KEY is missing. Using fallback explanation.");
             return getFallbackExplanation(drug, gene, phenotype, riskLabel);
@@ -57,9 +71,7 @@ async function generateExplanation(drug, gene, phenotype, riskLabel, depth = "su
             retrievedContext = "CPIC guidelines unavailable at this time.";
         }
 
-        // 2. Call Gemini with retry
-        const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
-
+        // 2. Build prompt
         const prompt = `
             You are a clinical pharmacogenomics advisor generating a concise explanation.
 
@@ -86,14 +98,10 @@ async function generateExplanation(drug, gene, phenotype, riskLabel, depth = "su
             Output ONLY raw JSON. No markdown, no code fences.
         `;
 
-        const result = await withRetry(async () => {
-            return await model.generateContent(prompt);
-        }, 3, 3000);
+        // 3. Call Gemini with model fallback chain
+        const text = await callWithModelFallback(prompt);
 
-        const response = await result.response;
-        const text = response.text();
-
-        // Clean up markdown code blocks if present
+        // 4. Parse response
         const cleanText = text.replace(/```json/g, '').replace(/```/g, '').trim();
 
         try {
@@ -104,7 +112,6 @@ async function generateExplanation(drug, gene, phenotype, riskLabel, depth = "su
             };
         } catch (e) {
             console.error("Failed to parse Gemini JSON response:", text);
-            // If it's not valid JSON, use the raw text as summary
             return {
                 summary: cleanText.substring(0, 200),
                 expanded: cleanText
@@ -119,7 +126,7 @@ async function generateExplanation(drug, gene, phenotype, riskLabel, depth = "su
 
 function getFallbackExplanation(drug, gene, phenotype, riskLabel) {
     return {
-        summary: `${phenotype} phenotype detected for ${gene}. Risk for ${drug}: ${riskLabel}. (AI explanation temporarily unavailable — Gemini API rate limited)`,
+        summary: `${phenotype} phenotype detected for ${gene}. Risk for ${drug}: ${riskLabel}. (AI explanation temporarily unavailable — all model quotas exhausted)`,
         expanded: `The patient's ${gene} gene analysis reveals a ${phenotype} phenotype. For ${drug}, this results in a risk classification of "${riskLabel}". This assessment is based on CPIC pharmacogenomic guidelines. The AI-generated detailed explanation is temporarily unavailable due to API rate limits. Please retry shortly.`
     };
 }

@@ -39,43 +39,62 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 font-sans text-gray-900 pb-12">
+    <div className="min-h-screen bg-grid-pattern font-sans text-slate-200 pb-16">
       <Header />
 
-      <main className="max-w-4xl mx-auto px-4 space-y-6">
+      <main className="max-w-5xl mx-auto px-6 space-y-6">
 
         {/* Input Section */}
-        <Card className="p-6">
-          <h2 className="text-lg font-semibold mb-4 text-gray-800">Patient Data Input</h2>
+        <div className="animate-fade-in-up">
+          <Card className="p-6">
+            <div className="flex items-center gap-2 mb-5">
+              <div className="w-1.5 h-5 rounded-full bg-brand-500"></div>
+              <h2 className="text-base font-bold text-white">Patient Data Input</h2>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-            {/* File Upload */}
-            <FileUpload file={file} onFileChange={handleFileChange} />
-
-            {/* Controls */}
-            <DrugSelector
-              selectedDrug={drug}
-              onDrugChange={setDrug}
-              isLoading={isLoading}
-              onAnalyze={handleAnalyze}
-              isAnalyzeDisabled={!file || isLoading}
-            />
-          </div>
-        </Card>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <FileUpload file={file} onFileChange={handleFileChange} />
+              <DrugSelector
+                selectedDrug={drug}
+                onDrugChange={setDrug}
+                isLoading={isLoading}
+                onAnalyze={handleAnalyze}
+                isAnalyzeDisabled={!file || isLoading}
+              />
+            </div>
+          </Card>
+        </div>
 
         {/* Error Display */}
         {error && (
-          <Card className="p-6 border-l-4 border-red-500 bg-red-50">
-            <p className="text-red-700 font-medium">⚠ Analysis Error</p>
-            <p className="text-red-600 text-sm mt-1">{error}</p>
-          </Card>
+          <div className="animate-scale-in">
+            <Card className="p-5 border-l-2 border-red-500/60">
+              <div className="flex items-start gap-3">
+                <div className="w-8 h-8 rounded-lg bg-red-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg className="w-4 h-4 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-red-300 font-semibold text-sm">Analysis Error</p>
+                  <p className="text-red-400/80 text-xs mt-0.5">{error}</p>
+                </div>
+              </div>
+            </Card>
+          </div>
         )}
 
         {/* Results Section */}
         {result && (
           <ResultsDisplay result={result} />
         )}
+
+        {/* Footer */}
+        <footer className="text-center pt-8 pb-4">
+          <p className="text-xs text-slate-600">
+            PharmaGuard v1.0 — Built for Precision Medicine Research
+          </p>
+        </footer>
       </main>
     </div>
   );
